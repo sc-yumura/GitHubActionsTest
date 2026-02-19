@@ -6,7 +6,8 @@ jobs:
   create_issue:
     runs-on: ubuntu-latest
     steps:
-      - name: Create Issue From File
+      - id: create_issue
+        name: Create Issue From File
         uses: peter-evans/create-issue-from-file@v6
         with:
           title: An example issue
