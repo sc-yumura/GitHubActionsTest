@@ -1,0 +1,27 @@
+name: Create Issue
+on:
+  workflow_dispatch:
+
+jobs:
+  create_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Issue From File
+        uses: peter-evans/create-issue-from-file@v6
+        with:
+          title: An example issue
+          content-filepath: ./example-content/output.md
+          labels: |
+            report
+            automated issue
+    outputs:
+      issue-number: ${{ steps.create_issue.outputs.issue-number }}
+  add_comment:
+    needs: create_issue
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add Comment To Issue
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          issue-number: ${{ needs.create_issue.outputs.issue-number }}
+          body: This is a comment on the issue created in the previous step.
