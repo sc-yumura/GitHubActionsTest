@@ -6,6 +6,7 @@ jobs:
   create_issue_and_comment:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - id: create_issue
         name: Create Issue From File
         uses: peter-evans/create-issue-from-file@v6
