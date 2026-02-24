@@ -22,6 +22,8 @@ jobs:
         with:
           path: artifact
           merge-multiple: true
+      - name: Debug
+        run: pwd && ls
       - name: Create zip file
         run: zip -j artifact.zip artifact
       - name: Upload zip file
