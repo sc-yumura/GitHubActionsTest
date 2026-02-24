@@ -25,7 +25,7 @@ jobs:
       - name: Debug
         run: pwd && ls
       - name: Create zip file
-        run: zip -j artifact.zip artifact
+        run: zip -r artifact.zip artifact
       - name: Upload zip file
         uses: actions/upload-artifact@v6
         with:
