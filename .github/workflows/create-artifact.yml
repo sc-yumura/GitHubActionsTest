@@ -4,7 +4,6 @@ on:
 
 jobs:
   upload-artifact:
-    id: upload-artifact
     runs-on: ubuntu-latest
     steps:
       - name: Create File
