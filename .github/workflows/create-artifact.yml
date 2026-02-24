@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create File
-        run: echo "This is the content of artifact 1" > output/artifact.txt
+        run: echo "This is the content of artifact 1" > artifact.txt
       - name: Upload Artifact
         uses: actions/upload-artifact@v6
         with:
