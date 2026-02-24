@@ -1,0 +1,32 @@
+name: Create Issue
+on:
+  workflow_dispatch:
+
+jobs:
+  upload-artifact:
+    id: upload-artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create File
+        run: echo "This is the content of artifact 1" > output/artifact.txt
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifact
+          path: artifact.txt
+  create-zip:
+    needs: upload-artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          path: artifact
+          merge-multiple: true
+      - name: Create zip file
+        run: zip -j artifact.zip artifact
+      - name: Upload zip file
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifact-zip
+          path: artifact.zip
