@@ -13,4 +13,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Debug
-        run: echo "Received input: ${{ github.event.inputs.example_input }}"
+        run: echo "Received input > ${{ github.event.inputs.example_input }}"
