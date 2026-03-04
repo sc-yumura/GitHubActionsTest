@@ -7,19 +7,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create File
-        run: echo "This is the content of artifact 1" > artifact.txt
+        run: echo "This is the content of artifact 1" > test.txt
       - name: Upload Artifact
         uses: actions/upload-artifact@v6
         with:
           name: artifact.txt
-          path: artifact/test1.txt
+          path: test.txt
       - name: Create File
-        run: echo "This is the content of artifact 2" > artifact2.txt
+        run: echo "This is the content of artifact 2" > test2.txt
       - name: Upload Artifact
         uses: actions/upload-artifact@v6
         with:
           name: artifact2.txt
-          path: artifact/test2.txt
+          path: test2.txt
   create-zip:
     needs: upload-artifact
     runs-on: ubuntu-latest
