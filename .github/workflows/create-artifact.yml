@@ -11,15 +11,15 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v6
         with:
-          name: artifact/test1.txt
-          path: artifact.txt
+          name: artifact.txt
+          path: artifact/test1.txt
       - name: Create File
         run: echo "This is the content of artifact 2" > artifact2.txt
       - name: Upload Artifact
         uses: actions/upload-artifact@v6
         with:
-          name: artifact/test2.txt
-          path: artifact2.txt
+          name: artifact2.txt
+          path: artifact/test2.txt
   create-zip:
     needs: upload-artifact
     runs-on: ubuntu-latest
