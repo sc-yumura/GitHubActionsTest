@@ -1,0 +1,31 @@
+name: Terragrunt
+
+on:
+  workflow_dispatch:
+
+jobs:
+  terragrunt:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: node -v
+
+      - uses: hashicorp/setup-terraform@v4
+
+      - name: install terragrunt
+        run: |
+          TG_VERSION=0.55.0
+          curl -L https://github.com/gruntwork-io/terragrunt/releases/download/v${TG_VERSION}/terragrunt_linux_amd64 \
+          -o terragrunt
+          chmod +x terragrunt
+          sudo mv terragrunt /usr/local/bin/
+
+      - name: Terrartung validate
+        working-directory: terragrunt
+        run: terragrunt validate
