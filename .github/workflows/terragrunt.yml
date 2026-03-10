@@ -27,5 +27,5 @@ jobs:
           sudo mv terragrunt /usr/local/bin/
 
       - name: Terrartung validate
-        working-directory: terragrunt
+        working-directory: ./terragrunt/
         run: terragrunt validate
