@@ -54,4 +54,5 @@ jobs:
         uses: peter-evans/create-or-update-comment@v5
         with:
           issue-number: ${{ env.PR_NUMBER }}
-          body: ${{ steps.post_comment.outputs.result }}
+          body: |
+            ${{ steps.post_comment.outputs.result }}
