@@ -10,6 +10,9 @@ env:
     BASE_REF: ${{ github.event.pull_request.base.ref }}
     PATH_TO_FILE: example-content/sample.xlsx
 
+permissions:
+  pull-requests: write
+
 jobs:
   diff:
     runs-on: ubuntu-latest
