@@ -1,0 +1,49 @@
+name: Excel diff
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - example-content/*.xlsx
+env:
+    PR_NUMBER: ${{ github.event.pull_request.number }}
+    BASE_REF: ${{ github.event.pull_request.base.ref }}
+    PATH_TO_FILE: example-content/sample.xlsx
+
+permissions:
+  pull-requests: write
+
+jobs:
+  diff:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r .github/scripts/requirements.txt
+
+      - name: Fetch PR refs
+        run: |
+          git fetch origin pull/${PR_NUMBER}/head:pr-head
+          git fetch origin ${BASE_REF}:${BASE_REF}-local
+          git show pr-head:${PATH_TO_FILE} > /tmp/file_head.xlsx
+          git show ${BASE_REF}-local:${PATH_TO_FILE} > /tmp/file_base.xlsx
+
+      - name: Run diff script
+        run: |
+          python ./.github/scripts/excel_diff.py > diff.md
+        env:
+          OLD_FILE: /tmp/file_base.xlsx
+          NEW_FILE: /tmp/file_head.xlsx
+
+      - name: Add Comment To Issue
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          issue-number: ${{ env.PR_NUMBER }}
+          body-path: diff.md
