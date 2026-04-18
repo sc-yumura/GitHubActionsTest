@@ -5,14 +5,14 @@ on:
     types: [opened, synchronize]
     paths:
       - example-content/*.xlsx
+env:
+    PR_NUMBER=${{ github.event.pull_request.number }}
+    BASE_REF=${{ github.event.pull_request.base.ref }}
+    PATH_TO_FILE=example-content/sample.xlsx
 
 jobs:
   diff:
     runs-on: ubuntu-latest
-    env:
-      PR_NUMBER=${{ github.event.pull_request.number }}
-      BASE_REF=${{ github.event.pull_request.base.ref }}
-      PATH_TO_FILE=example-content/sample.xlsx
 
     steps:
       - uses: actions/checkout@v4
