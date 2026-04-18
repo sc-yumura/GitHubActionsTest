@@ -6,9 +6,9 @@ on:
     paths:
       - example-content/*.xlsx
 env:
-    PR_NUMBER=${{ github.event.pull_request.number }}
-    BASE_REF=${{ github.event.pull_request.base.ref }}
-    PATH_TO_FILE=example-content/sample.xlsx
+    PR_NUMBER: ${{ github.event.pull_request.number }}
+    BASE_REF: ${{ github.event.pull_request.base.ref }}
+    PATH_TO_FILE: example-content/sample.xlsx
 
 jobs:
   diff:
