@@ -20,5 +20,5 @@ GHAのPoCをやっているリポジトリ
 
 ## xlsx-diff
 
-PR時にxlsxファイルの差分を取得するサンプル
+[![Excel diff](https://github.com/sc-yumura/GitHubActionsTest/actions/workflows/xlsx-diff.yml/badge.svg)](https://github.com/sc-yumura/GitHubActionsTest/actions/workflows/xlsx-diff.yml) PR時にxlsxファイルの差分を取得するサンプル
 
