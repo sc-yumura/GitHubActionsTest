@@ -26,6 +26,6 @@ jobs:
           chmod +x terragrunt
           sudo mv terragrunt /usr/local/bin/
 
-      - name: Terrartung validate
+      - name: Terragrunt validate
         working-directory: infra
         run: terragrunt validate
